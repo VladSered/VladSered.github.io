@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
     <link rel="stylesheet" href="css/main.min.css"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   </head>
   <body>   
     <section class="hero">
@@ -32,30 +33,36 @@
         <ul class="features__list">
           <li class="features__item">
             <div class="icon icon-feather"></div>
-            <h3 class="features__header">Branding</h3>
-            <p class="features__description">
-              Sed ut perspiciatis unde omnis iste natus error sit 
-              voluptatem accusantium doloremque laudantium, totam rem aperiam, 
-              eaque ipsa quae ab illo inventore
-            </p>
+            <div>
+              <h3 class="features__header">Branding</h3>
+              <p class="features__description">
+                Sed ut perspiciatis unde omnis iste natus error sit 
+                voluptatem accusantium doloremque laudantium, totam rem aperiam, 
+                eaque ipsa quae ab illo inventore
+              </p>
+            </div>
           </li>
           <li class="features__item">
             <div class="icon icon-pencil"></div>
-            <h3 class="features__header">Development</h3>
-            <p class="features__description">
-              Sed ut perspiciatis unde omnis iste natus error sit 
-              voluptatem accusantium doloremque laudantium, totam rem aperiam, 
-              eaque ipsa quae ab illo inventore
-            </p>
+            <div>
+              <h3 class="features__header">Development</h3>
+              <p class="features__description">
+                Sed ut perspiciatis unde omnis iste natus error sit 
+                voluptatem accusantium doloremque laudantium, totam rem aperiam, 
+                eaque ipsa quae ab illo inventore
+              </p>
+            </div>
           </li>
           <li class="features__item">
             <div class="icon icon-megaphone"></div>
-            <h3 class="features__header">Consulting</h3>
-            <p class="features__description">
-              Sed ut perspiciatis unde omnis iste natus error sit 
-              voluptatem accusantium doloremque laudantium, totam rem aperiam, 
-              eaque ipsa quae ab illo inventore
-            </p>
+            <div>
+              <h3 class="features__header">Consulting</h3>
+              <p class="features__description">
+                Sed ut perspiciatis unde omnis iste natus error sit 
+                voluptatem accusantium doloremque laudantium, totam rem aperiam, 
+                eaque ipsa quae ab illo inventore
+              </p>
+            </div>
           </li>
         </ul>
       </div>
@@ -69,10 +76,33 @@
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem 
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
           </p>
-          <nav class="works"><a class="works__link works__link--active" href="#">All</a><a class="works__link" href="#">Branding</a><a class="works__link" href="#">Web</a><a class="works__link" href="#">Logo Design</a><a class="works__link" href="#">Photography</a>
-          </nav>
         </div>
       </div>
+      <section class="content">
+        <div class="container">
+          <div class="filters__controls">
+            <ul class="header__content">
+              <li class="filter" data-filter="all">All</li>
+              <li class="filter" data-filter=".category-1">Branding</li>
+              <li class="filter" data-filter=".category-2">Web</li>
+              <li class="filter" data-filter=".category-3">Logo Design</li>
+              <li class="filter" data-filter=".category-4">Photography</li>
+            </ul>
+          </div>
+        </div>
+        <div class="portfolio" id="Portfolio">
+          <div class="mix category-1" data-myorder="8"><img src="/images/img8.png" alt=""/></div>
+          <div class="mix category-2" data-myorder="7"><img src="/images/img7.png" alt=""/></div>
+          <div class="mix category-2" data-myorder="6"><img src="/images/img6.png" alt=""/></div>
+          <div class="mix category-3" data-myorder="5"><img src="/images/img5.png" alt=""/></div>
+          <div class="mix category-2" data-myorder="4"><img src="/images/img4.png" alt=""/></div>
+          <div class="mix category-3" data-myorder="3"><img src="/images/img3.png" alt=""/></div>
+          <div class="mix category-4" data-myorder="2"><img src="/images/img2.png" alt=""/></div>
+          <div class="mix category-4" data-myorder="1"><img src="/images/img1.png" alt=""/></div>
+        </div>
+      </section>
     </section>
   </body>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="js/main.min.js"></script>
 </html>
