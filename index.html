@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
     <link rel="stylesheet" href="css/main.min.css"/>
+    <link rel="stylesheet" href="/maps/documentation/javascript/demos/demos.css"/>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   </head>
   <body>   
@@ -246,7 +247,91 @@
         </div>
       </div>
     </section>
+    <section class="fact">
+      <div class="container">
+        <div class="title">
+          <h2 class="title title__header">Some Fun Facts</h2>
+          <div class="title--with-bottom-line"> <i class="fa fa-heart-o" aria-hidden="true"></i></div>
+        </div>
+        <ul class="fact__list">
+          <li class="fact__item"><i class="fact__icon fa fa-clock-o" aria-hidden="true"></i>
+            <div>
+              <h3 class="fact__header">3200</h3>
+              <p class="fact__discription">Hours of Work</p>
+            </div>
+          </li>
+          <li class="fact__item"><i class="fact__icon fa fa-users" aria-hidden="true"></i>
+            <div>
+              <h3 class="fact__header">120 </h3>
+              <p class="fact__discription">Satisfied Clinets</p>
+            </div>
+          </li>
+          <li class="fact__item"><i class="fact__icon fa fa-rocket" aria-hidden="true"></i>
+            <div>
+              <h3 class="fact__header">360</h3>
+              <p class="fact__discription">Projects delivered</p>
+            </div>
+          </li>
+          <li class="fact__item"><i class="fact__icon fa fa-trophy" aria-hidden="true"></i>
+            <div>
+              <h3 class="fact__header">42</h3>
+              <p class="fact__discription">Awards Won</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="discuss">
+      <div class="container">
+        <div class="title">
+          <h2 class="title title__header">Let's Discuss</h2>
+          <div class="title--with-bottom-line"><i class="fa fa-heart-o" aria-hidden="true"></i></div>
+          <p class="discuss-discription">
+             Voluptatem accusantium doloremque laudantium, 
+            totam rem aperiam, eaque ipsa quae ab illo inventore
+          </p>
+        </div>
+        <div class="form">
+          <div class="form__place">
+            <h3 class="place-title">Cras at ultrices erat, sed vulputate!</h3>
+            <p class="place-discription">
+                2345 Setwant natrer, 1234, Washington. United States. (401) 1234 567 hello@brandi.com www.brandi.com</p>
+          </div>
+          <div class="form__area">
+            <h3 class="form__title">Say hello!</h3>
+            <form action="#" method="post">
+              <div class="form__field">
+                <input class="form__input name" type="text" placeholder="Name"/>
+                <input class="form__input mail" type="text" placeholder="Email"/>
+                <input class="form__input message" type="text" placeholder="Message"/>
+                <button class="send-m" type="submit" value="link"><i class="icon-s fa fa-envelope-o"></i><span class="text-s">Send Message </span></button>
+              </div>
+            </form>
+          </div>
+          <div class="form__social">
+            <div class="form__links">
+              <li class="form__icon"><a href="http://behance.net" target="_blank"><i class="fa fa-behance" aria-hidden="true"><span class="visually-hidden">behance,twitter,dribbble,tree,google-plus</span></i></a></li>
+              <li class="form__icon"><a href="http://twitter.com" target="_blank"><i class="fa fa-twitter" aria-hidden="true"><span class="visually-hidden">behance,twitter,dribbble,tree,google-plus</span></i></a></li>
+              <li class="form__icon"><a href="http://dribbble.com" target="_blank"><i class="fa fa-dribbble" aria-hidden="true"><span class="visually-hidden">behance,twitter,dribbble,tree,google-plus</span></i></a></li>
+              <li class="form__icon"><a href="http://forrst.com" target="_blank"><i class="fa fa-tree" aria-hidden="true"><span class="visually-hidden">behance,twitter,dribbble,tree,google-plus</span></i></a></li>
+              <li class="form__icon"><a href="http://google.com" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"><span class="visually-hidden">behance,twitter,dribbble,tree,google-plus</span></i></a></li>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-control" id="style-selector-control">
+        <select class="selector-control" id="style-selector">
+          <option value="default">Default</option>
+          <option value="silver">Silver</option>
+          <option value="night">Night mode</option>
+          <option value="retro" selected="selected">Retro</option>
+          <option value="hiding">Hide features</option>
+        </select>
+      </div>
+      <div id="map"></div>
+    </section>
   </body>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="js/main.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6RGU9l4UNR7UVmcIF9CZITC83jWm9SWs&amp;callback=initMap" async="async" defer="defer"></script>
 </html>
