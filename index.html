@@ -180,23 +180,28 @@
       </div>
       <section class="content">
         <div class="container">
-          <ul class="header__content">
-            <li class="filter filter--active" data-filter="all">All</li>
-            <li class="filter" data-filter=".category-1">Branding</li>
-            <li class="filter" data-filter=".category-2">Web</li>
-            <li class="filter" data-filter=".category-3">Logo Design</li>
-            <li class="filter" data-filter=".category-4">Photography</li>
-          </ul>
+          <div class="controls">
+            <button class="control control--active" type="button" data-filter="all">All</button>
+            <button class="control" type="button" data-filter=".branding">Branding</button>
+            <button class="control" type="button" data-filter=".web">Web</button>
+            <button class="control" type="button" data-filter=".logodesign">Logo Design</button>
+            <button class="control" type="button" data-filter=".photography">Photography</button>
+          </div>
         </div>
         <ul class="portfolio">
-          <li class="mix category-1"><img class="work__picture" src="/images/img8.png" alt=""/></li>
-          <li class="mix category-2"><img class="work__picture" src="/images/img7.png" alt=""/></li>
-          <li class="mix category-1"><img class="work__picture" src="/images/img6.png" alt=""/></li>
-          <li class="mix category-3"><img class="work__picture" src="/images/img5.png" alt=""/></li>
-          <li class="mix category-2"><img class="work__picture" src="/images/img4.png" alt=""/></li>
-          <li class="mix category-3"><img class="work__picture" src="/images/img3.png" alt=""/></li>
-          <li class="mix category-4"><img class="work__picture" src="/images/img2.png" alt=""/></li>
-          <li class="mix category-4"><img class="work__picture" src="/images/img1.png" alt=""/></li>
+          <li class="mix branding"><img class="work" src="/images/img8.png" alt=""/></li>
+          <li class="mix web"><img class="work" src="/images/img7.png" alt=""/></li>
+          <li class="mix branding"><img class="work" src="/images/img2.png" alt=""/></li>
+          <li class="mix logodesign"><img class="work" src="/images/img5.png" alt=""/></li>
+          <li class="mix web"><img class="work" src="/images/img1.png" alt=""/></li>
+          <li class="mix logodesign"><img class="work" src="/images/img3.png" alt=""/></li>
+          <li class="mix photography"><img class="work" src="/images/img4.png" alt=""/></li>
+          <li class="mix photography"><img class="work" src="/images/img6.png" alt=""/>
+            <div class="picture"><img src="/images/icons/eye.png" alt=""/>
+              <h4 class="picture__title">Labore et dolore magnam</h4>
+              <p class="pictutre__disc">Photography </p>
+            </div>
+          </li>
         </ul>
       </section>
     </section>
