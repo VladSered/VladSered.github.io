@@ -3290,24 +3290,24 @@ return i.id=n.randomHex(),i.startState=a.state,i.startDataset=o,i.newDataset=t.s
 
 $(document).ready(function(){
     $('#some-slider-one').owlCarousel({
-        // responsive: { //Адаптивность. Кол-во выводимых элементов при определенной ширине.
-        //     0:{
-        //         items:1
-        //     },
-        //     700:{
-        //         items:2
-        //     },
-        //     1170:{
-        //         items: 3
-        //     }
-        // } 
+        responsive: { //Адаптивность. Кол-во выводимых элементов при определенной ширине.
+            0:{
+                items:1
+            },
+            700:{
+                items:2
+            },
+            1170:{
+                items: 3
+            }
+        } 
     });
     $('#some-slider-two').owlCarousel({
         loop:true,
         items: 4,
-        // margin:30,
-        // autoplay: true,
-        // autoplayTimeout: 4500,
+        margin:30,
+        autoplay: true,
+        autoplayTimeout: 4500,
         responsive: { //Адаптивность. Кол-во выводимых элементов при определенной ширине.
             0:{
                 items:1
