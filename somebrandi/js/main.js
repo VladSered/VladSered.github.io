@@ -3303,10 +3303,10 @@ $(document).ready(function(){
         } 
     });
     $('#some-slider-two').owlCarousel({
-        loop:true,
+        // loop:true,
         items: 4,
-        margin:30,
-        autoplay: true,
+        // margin:30,
+        // autoplay: true,
         autoplayTimeout: 4500,
         responsive: { //Адаптивность. Кол-во выводимых элементов при определенной ширине.
             0:{
@@ -3321,9 +3321,9 @@ $(document).ready(function(){
         }
     });
     $('#some-slider-three').owlCarousel({
-        loop:true,
+        // loop:true,
         items: 1,
-        autoplay: true,
+        // autoplay: true,
         autoplayTimeout: 8000,
         smartSpeed: 4000,
     });
