@@ -3303,25 +3303,29 @@ $(document).ready(function(){
         } 
     });
     $('#some-slider-two').owlCarousel({
-        // loop:true,
+        loop:true,
         items: 4,
-        // margin:30,
+        margin:30,
         // autoplay: true,
         autoplayTimeout: 4500,
+        // responsiveClass:true,
         responsive: { //Адаптивность. Кол-во выводимых элементов при определенной ширине.
             0:{
-                items:1
+                items:1,
             },
-            600:{
-                items:2
+            540:{
+                items:2,
             },
-            1170:{
-                items:4
+            875:{
+                items:3,
+            },
+            1080:{
+                items: 4,
             }
-        }
+        } 
     });
     $('#some-slider-three').owlCarousel({
-        // loop:true,
+        loop:true,
         items: 1,
         // autoplay: true,
         autoplayTimeout: 8000,
