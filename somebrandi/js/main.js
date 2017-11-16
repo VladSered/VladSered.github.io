@@ -3313,10 +3313,10 @@ $(document).ready(function(){
             0:{
                 items:1,
             },
-            540:{
+            570:{
                 items:2,
             },
-            875:{
+            910:{
                 items:3,
             },
             1080:{
