@@ -3290,14 +3290,15 @@ return i.id=n.randomHex(),i.startState=a.state,i.startDataset=o,i.newDataset=t.s
 
 $(document).ready(function(){
     $('#some-slider-one').owlCarousel({
+        
         responsive: { //Адаптивность. Кол-во выводимых элементов при определенной ширине.
             0:{
                 items:1
             },
-            700:{
+            795:{
                 items:2
             },
-            1170:{
+            1115:{
                 items: 3
             }
         } 
