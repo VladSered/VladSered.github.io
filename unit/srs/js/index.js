@@ -353,3 +353,458 @@ function transform() {
 btn.addEventListener("click", transform);
 */
 
+
+
+
+/*
+// map
+var arr = ["Есть", "жизнь", "на", "Марсе"];
+
+var arrLength = arr.map(function(item){
+    return item.length;
+});
+console.log( arrLength ); // 4,5,2,5
+*/
+
+
+// var a = document.documentElement.firstChild;
+// var b = document.body.children[1];
+// var c = document.body.children[1].children[1];
+// console.log(a, b, c);
+
+
+
+// for (var i=1; i<=5; i++) {
+// 	(function(){
+// 		var j = i;
+// 		setTimeout( function timer(){
+// 			console.log( j );
+// 		}, j*1000 );
+// 	})();
+// }
+
+
+// for (let i=1; i<=5; i++) {
+// 	setTimeout( function timer(){
+// 		console.log( i );
+// 	}, i*1000 );
+// }
+
+/*
+function CoolModule() {
+	var something = "cool";
+	var another = [1, 2, 3];
+
+	function doSomething() {
+		console.log( something );
+	}
+
+	function doAnother() {
+		console.log( another.join( " ! " ) );
+	}
+
+	return {
+		doSomething: doSomething,
+		doAnother: doAnother
+	};
+}
+
+var foo = CoolModule();
+
+foo.doSomething(); // cool
+foo.doAnother(); // 1 ! 2 ! 3
+*/
+
+
+// Сделаем цикл по узлам <li>
+// var lis = document.getElementsByTagName('li');
+//     for (i = 0; i < lis.length; i++) {
+//         var title = lis[i].firstChild.data; // получить название из текстового узла
+//         title = title.trim(); // убрать лишние пробелы с концов
+//         var childCount = lis[i].getElementsByTagName('li').length; // получить количество детей
+//         console.log(title + ': ' + childCount);
+// }
+
+
+// var firstDiv = document.getElementById('widget');
+// console.log(firstDiv);
+// var firstAttr = firstDiv.getAttribute('data-widget-name');
+// console.log(firstAttr);
+
+
+
+
+
+// Напишите функцию insertAfter(elem, refElem), которая добавит elem после узла refElem.
+// var elem = document.createElement('div');
+// elem.innerHTML = '<b>Новый элемент</b>';
+
+// function insertAfter(elem, refElem) {
+//     return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
+// }
+
+// var body = document.body;
+
+// // вставить elem после первого элемента
+// insertAfter(elem, body.firstChild); // <--- должно работать
+
+// // вставить elem за последним элементом
+// insertAfter(elem, body.lastChild); // <--- должно работать
+
+
+/*
+// removeChildren Напишите функцию removeChildren, которая удаляет всех потомков элемента.
+function removeChildren(elem) { 
+    try {
+        elem.innerHTML = '';
+      } catch (e) {
+        while (elem.firstChild) {
+            elem.removeChild(elem.firstChild);
+        }
+    }
+}
+removeChildren(table); // очищает таблицу
+removeChildren(ol); // очищает список
+*/
+
+/*
+// Создать список
+var ul = document.createElement('ul');
+    document.body.appendChild(ul);
+
+    while (true) {
+      var data = prompt("Введите текст для пункта списка", "");
+
+      if (!data) {
+        break;
+      }
+
+      var li = document.createElement('li');
+      li.appendChild(document.createTextNode(data));
+      ul.appendChild(li);
+    }
+*/
+
+// var ul = document.body.children[0];
+// console.log(ul);
+// var someLi = ul.children[1];
+// console.log(someLi);
+// someLi.insertAdjacentHTML("beforeBegin","<li>3</li><li>4</li><li>5</li>");
+
+
+
+// var c =new Array(1,2,3,4);
+// var b = c.filter(function(a) {
+//     return (a % 2);
+// });
+// console.log(b);
+// alert(b[0]+b[1]);
+
+// var x = 8;
+// var y = x++ * 5;
+// var z = y % x;
+// console.log(x);
+
+
+
+
+
+/*
+var messenger = (function () {
+    var count = 0,
+    names = {};
+
+    function setNames(data) {
+        names = data;
+    }
+
+    function getNames() {
+        return names;
+    }
+     
+    return {
+        initialize : function(first, second) {
+            setNames({
+                first : first,
+                second : second
+            });
+        },
+    sayHello : function() {
+        var greetingMessage = "Welcome " + getNames().first + " " + getNames().second;
+        console.log(greetingMessage + " " + (count++));
+    },
+
+    resetCount : function() {
+        count = 0;
+        console.log("Count is 0");
+    }
+
+    };
+}());
+
+messenger.initialize("John", "Connor");
+messenger.sayHello();*/
+
+
+
+
+
+// var name = "";
+
+// var user = {
+//   name: "Василий",
+
+//   export: function() {
+//     return {
+//       value: this
+//     };
+//   }
+
+// };
+
+// console.log( user.export().value.name );
+
+
+
+/*
+var calculator = {
+    read : function() {
+        this.firstNumb =+prompt('First Number','');
+        this.secondNumb = +prompt('Second Number', '');
+    },
+    sum : function () {
+        return  this.firstNumb + this.secondNumb;
+       },
+    mul : function () {
+        return this.firstNumb * this.secondNumb;
+    }
+};
+
+calculator.read();
+console.log( calculator.sum() );
+console.log( calculator.mul() );
+*/
+/* Пример This
+function Msg() {
+    this.name = "";
+    this.surname = "";
+
+    this.setName = function(name) {
+        this.name = "Mr." + name; 
+    };
+
+    this.setSurname = function(surname) {
+        this.surname = surname;
+    };
+
+    this.go = function(name, surname) {
+        this.setName(name);
+        this.setSurname(surname);
+    };
+
+    this.getSayHi = function() {
+        var sayHi = "Hello " + this.name + " ";
+        sayHi += this.surname + ". How are you? ";
+        return sayHi;
+    };
+
+    this.say = function() {
+        console.log(this.getSayHi());
+    };
+}
+
+msg = new Msg();
+msg.go("Alex", "Gibson");
+msg.say();
+*/
+
+/*
+function Messenger () {
+    this.count = 0;
+    this.firstName = "";
+    this.secondName = "";
+        
+    this.setFirstName = function(firstName) {
+        this.firstName = "Mr. " + firstName;    
+    };
+
+    this.setSecondName = function(secondName) {
+        this.secondName= secondName;    
+    };
+    
+    this.init = function(firstName, secondName) {
+        this.setFirstName(firstName);
+        this.setSecondName(secondName);         
+    };
+	
+    this.getMessageText = function () {
+	var greetingMessage = "Welcome " + this.firstName + " ";
+        greetingMessage += this.secondName + ".Glad to see you ";
+	return greetingMessage;		
+    };
+
+    this.sayHello = function () {
+        console.log(this.getMessageText() + "Count " +(this.count++));
+    };
+
+    this.resetCount = function () {
+        this.count = 0;
+        console.log("Count is 0");
+    };     
+}
+messenger = new Messenger();
+messenger.init("John", "Smith");
+messenger.sayHello();
+*/
+/*
+var messenger =(function(){
+    var count = 0;
+    var firstName = "";
+    var secondName= "";
+
+    function setFirstName(fName) {
+        firstName = "Mr. " + fName;
+    }
+    function setSecondName(sName) {
+        secondName = sName;
+    }
+    function getMessageText() { 
+        var greetingMessage = "Welcome " + firstName + " ";
+        greetingMessage += secondName + " .Glad to see you ";
+        return greetingMessage;
+    }
+    return {
+        init: function(firstName, secondName) {
+            setFirstName(firstName);
+            setSecondName(secondName);
+        },
+        sayHello: function sayHello() {
+            console.log(getMessageText());
+        } 
+    }; 
+})();
+messenger.init("John", "Smith");
+messenger.sayHello();
+*/
+
+/*
+function Room() {
+    this.area = 12;
+    this.name = "office";
+}
+
+Room.prototype.showName = function() {
+    console.log(this.name);
+};
+Room.prototype.showAll = function() {
+    console.log("We have ${this.name}. Area is ${this.area}");
+};
+
+var room = new Room();
+room.showName();
+room.showAll();
+*/
+
+/*
+function Room() {
+    this.area = 12;
+    this.name = "office";
+}
+
+Room.prototype = {
+    showName : function() {
+    console.log(this.name);
+    }, 
+    showAll : function() {
+    console.log(`We have ${this.name}. Area is ${this.area}`);
+    }
+};
+
+var room = new Room();
+room.showName();
+room.showAll();
+*/
+/*
+function Room(name) {
+    this.area = 12;
+    this.name = name;
+}
+Room.prototype.setArea = function (area) {
+    this.area = area;
+};
+Room.prototype.showArea = function() {
+    console.log(this.area);
+};
+Room.prototype.showName = function() {
+    console.log(this.name);
+};
+
+// var room = new Room ("basement");
+// room.showArea();
+// room.showName();
+
+function BusinessRoom(name) {
+    this.isAvailable = true;
+    Room.apply(this, arguments); // вызов конструктора родительского класса // или Room.call(this.name);
+}
+BusinessRoom.prototype = Object.create(Room.prototype); // добавляем в прототип бизнес комнаты новый объект, у которого в свою очередь прототип 
+// BusinessRoom. prototype -> Room.prototype -> Object.prototype -> null
+
+
+// расширяем объект бизнес комнаты своими методами
+BusinessRoom.prototype.setAvailability = function(isAvailable) {
+    this.isAvailable = isAvailable;
+};
+BusinessRoom.prototype.showAvailability = function() {
+    console.log(this.isAvailable);
+};
+BusinessRoom.prototype.showName = function() {
+    Room.prototype.showName.apply(this, arguments);
+    console.log("Child " + this.name);
+};
+
+
+var businessRoom = new BusinessRoom("hub");
+console.dir(businessRoom);
+// businessRoom.showAvailability();
+*/
+
+
+/*
+function inheritense(parent, child) {
+    var tempChild = child.prototype;
+
+    if (oObject.create) {
+        child.property = Object.create(parent.prototype);
+    } else {
+        function F() {};
+        F.prototype = parent.prototype;
+        child.prototype = new F();
+    }
+    for(var key in tempChild) {
+        if (tempChild.hasOwnProperty(key)){
+            child.prototype[key] = tempChild[key];
+        }
+    }
+}
+*/
+
+
+$(document).ready(function(){
+    $("input[value='Задание 1']").click(function(){
+        $('p.red, ul').css("color", "red");
+    });
+    $("input[value='Задание 2']").click(function(){
+        $('div p').css("color", "blue");
+    });
+    $("input[value='Задание 3']").click(function(){
+        $('p strong').css("fontStyle", "italic");
+    });
+    $("input[value='Задание 4']").click(function(){
+        $('.blocks > div').css("background", "white");
+    });
+});
+
+
+
+
