@@ -17,7 +17,6 @@ var json;
                         data += '<p>' + value.id + '</p>';
                         data += '<p>' + value.name + '</p>';
                         data += '</div>';
-                        // data += '<p>' + value.id + '</p>';
                     });
                     // отправляем данные на страницу
                     $('#out').append(data);
