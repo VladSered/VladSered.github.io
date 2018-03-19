@@ -1,0 +1,36 @@
+﻿
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    line-height: 1.2;
+}
+
+.container {
+    max-width: 1170px;
+    margin: auto;
+}
+
+li {
+    list-style: none;
+}
+
+#out {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.list {
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 300px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+.place {
+    color: grey;
+}
