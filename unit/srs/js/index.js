@@ -2,6 +2,9 @@
 window.onload = function () {
     // Создание объекта запроса.
     $('#action').click(function () {
+        //изменяем значение кнопки и делаем ее неактивной
+        $('#action').val('loading...').attr('disabled', true);
+        
         $.ajax({
             type: 'GET',
             url: 'https://jsonplaceholder.typicode.com/users',
@@ -22,6 +25,8 @@ window.onload = function () {
                         <li class="company">' + '<span>Company: </span>' + value.company.name +'</li>\
                     </ul>');
                 });
+                //удаляем кнопку из dom
+                $('#action').remove();    
             }
         });
     });
