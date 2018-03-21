@@ -1,5 +1,5 @@
 // обработчик события загрузки страницы.
-window.onload = function () {
+$(document).ready(function(){
     // Создание объекта запроса.
     $('#action').click(function () {
         $.ajax({
@@ -29,11 +29,11 @@ window.onload = function () {
                 });
                 //удаляем кнопку из DOM
                 $('#action').remove();
-                // удаляем карточку из DOM
-                $('.close_card').click(function () {
-                    $(this).parents('.list').remove();
-                });
             }
         });
+        // удаляем карточку из DOM
+        $('body').on('click', '.close_card', function(){
+            $(this).parents('.list').remove();
+        });
     });
-}
+});
