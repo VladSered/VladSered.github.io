@@ -2,13 +2,15 @@
 window.onload = function () {
     // Создание объекта запроса.
     $('#action').click(function () {
-        //изменяем значение кнопки и делаем ее неактивной
-        $('#action').val('loading...').attr('disabled', true);
-        
         $.ajax({
             type: 'GET',
             url: 'https://jsonplaceholder.typicode.com/users',
             dataType: 'json',
+            
+            beforeSend: function(){
+                //изменяем значение кнопки и делаем ее неактивной
+                $('#action').val('loading...').attr('disabled', true);
+            },
 
             // функция получает десериализованный объект
             success: function (obj) {
@@ -25,8 +27,9 @@ window.onload = function () {
                         <li class="company">' + '<span>Company: </span>' + value.company.name +'</li>\
                     </ul>');
                 });
-                //удаляем кнопку из dom
+                //удаляем кнопку из DOM
                 $('#action').remove();
+                // удаляем карточку из DOM
                 $('.close_card').click(function () {
                     $(this).parents('.list').remove();
                 });
