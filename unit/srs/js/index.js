@@ -13,8 +13,8 @@ window.onload = function () {
             // функция получает десериализованный объект
             success: function (obj) {
                 $.each(obj, function (key, value) {
-                    $('#out').append('<ul class="list">\
-                        <li class="name">'+ value.name +'</li>\
+                    $('#out').append('<ul class="list"><button class="close_card"><i class="fas fa-times"></i></button>\
+                        <li class="name">'+'<span><i class="fa fa-user"></i> </span>'+ value.name +'</li>\
                         <li class="email">' + '<span><i class="fa fa-envelope"></i> </span>' + value.email +'</li>\
                         <li class="phone">' + '<span><i class="fa fa-mobile"></i> </span>' + value.phone +'</li>\
                         <li class="adress">' + '<span>Adress: </span>' + '<ul>\
@@ -26,7 +26,10 @@ window.onload = function () {
                     </ul>');
                 });
                 //удаляем кнопку из dom
-                $('#action').remove();    
+                $('#action').remove();
+                $('.close_card').click(function () {
+                    $(this).parents('.list').remove();
+                });
             }
         });
     });

@@ -27,10 +27,23 @@ li {
 .list {
     border: 2px solid grey;
     border-radius: 10px;
+    position: relative;
     padding: 10px;
     min-width: 300px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
+
 .place {
     color: grey;
+}
+
+.close_card {
+    outline: none;
+    position: absolute;
+    border: none;
+    background-color: #ffffff;
+    cursor: pointer;
+    right: 5px;
+    top: 5px;
+    padding: 0;
 }
