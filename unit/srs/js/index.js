@@ -29,26 +29,38 @@ $(document).ready(function(){
                 });
                 //удаляем кнопку из DOM
                 $('#action').remove();
+
+                // данные в localstorage
+                var objStr = JSON.stringify(obj);
+                localStorage.setItem('data', objStr);
+
+                // данные из localstorge
+                var retrievedObj = localStorage.getItem('data');
+                console.log(JSON.parse(retrievedObj));
             }
         });
+
         // удаляем карточку из DOM
         $('body').on('click', '.close_card', function(){
             $(this).parents('.list').remove();
+            localStorage.setItem(this);
         });
 
         // работа с инфой
-        $('body').on('dblclick', '.edit', replaceHTML); 
-        function replaceHTML(){
-            var text =  $(this).text(); 
-
+        $('body').on('dblclick', '.edit', function(){  
+            var text =  $(this).text();
             $(this).html('<input type="text" class="editBox" value="'+ text +'">\
-                <a href="#" class="save"><i class="fas fa-save"></i></a>');
-        };
+                <button class="save"><i class="fas fa-save"></i></button>');
+        });
+
+
         // сохранение изменений 
         $('body').on('click', '.save', function() {
             var newText = $(this).siblings('.editBox').val();
-
             $(this).parent().text(newText);
+            
+            localStorage.setItem('newId', newText);
+            
         }); 
     });
 });

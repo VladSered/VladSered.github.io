@@ -47,7 +47,12 @@ li {
     top: 5px;
     padding: 0;
 }
+
 .save {
     color: black;
+    outline: none;
+    border: none;
+    background-color: #ffffff;
+    cursor: pointer;
 }
 
