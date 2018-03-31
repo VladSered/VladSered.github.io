@@ -3,7 +3,11 @@ $(document).ready(function () {
 
     // проверка данных в localstorge
     if (localStorage.getItem("data") != null) {
+        //удаляем кнопку из DOM
+        $('#action').remove();
+
         var test = JSON.parse(localStorage.getItem('data'));
+
         $.each(test, function (key, value) {
             $('#out').append('<ul class="list"><button class="close_card"><i class="fas fa-times"></i></button>\
                 <li class="name">' + '<span><i class="fas fa-user"></i> </span>' + '<span class="edit">' + value.name + '</span></li>\
@@ -17,8 +21,7 @@ $(document).ready(function () {
                 <li class="company">' + '<span>Company: </span>' + '<span class="edit">' + value.company.name + '</span></li>\
             </ul>');
         });
-        //удаляем кнопку из DOM
-        $('#action').remove();
+
     } else {
         // Создание объекта запроса.
         $('#action').click(function () {
@@ -48,34 +51,35 @@ $(document).ready(function () {
                     });
                     // данные в localstorage
                     localStorage.setItem('data', JSON.stringify(obj));
-
                     //удаляем кнопку из DOM
                     $('#action').remove();
                 }
             });
-
-            // удаляем карточку из DOM и из массива test
-            $('body').on('click', '.close_card', function () {
-                var test = JSON.parse(localStorage.getItem('data'));
-                var $ul = $(this).closest('.list');
-                test.splice($ul.index(), 1);
-                $ul.remove();
-                localStorage.setItem('data', JSON.stringify(test));
-            });
-
-            // работа с инфой
-            $('body').on('dblclick', '.edit', function () {
-                var text = $(this).text();
-                $(this).html('<input type="text" class="editBox" value="' + text + '">\
-                    <button class="save"><i class="fas fa-save"></i></button>');
-
-            });
-
-            // сохранение изменений 
-            $('body').on('click', '.save', function () {
-                var newText = $(this).siblings('.editBox').val();
-                $(this).parent().text(newText);
-            });
         });
     }
+
+    // удаляем карточку из DOM и из массива test
+    $('body').on('click', '.close_card', function () {
+        // var test = JSON.parse(localStorage.getItem('data'));
+        var $ul = $(this).closest('.list');
+        test.splice($ul.index(), 1);
+        $ul.remove();
+        // localStorage.setItem('data', JSON.stringify(test));
+    });
+
+    // работа с инфой
+    $('body').on('dblclick', '.edit', function () {
+        var text = $(this).text();
+        $(this).html('<input type="text" class="editBox" value="' + text + '">\
+                    <button class="save"><i class="fas fa-save"></i></button>');
+
+    });
+
+    // сохранение изменений 
+    $('body').on('click', '.save', function () {
+        var newText = $(this).siblings('.editBox').val();
+        $(this).parent().text(newText);
+    });
 });
+
+
