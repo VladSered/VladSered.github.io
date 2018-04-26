@@ -28,7 +28,7 @@ $(document).ready(function () {
 
                     // вывод данных на страницу
                     $.each(data, function (key, value) {
-                        $('#out').append('<ul class="list"><button class="close_card"><i class="fas fa-times"></i></button>\
+                        $('#out').append('<ul class="list" id ='+ value.id +'><button class="close_card"><i class="fas fa-times"></i></button>\
                             <li class="name">' + '<span><i class="fas fa-user"></i> </span>' + '<span class="edit">' + value.name + '</span></li>\
                             <li class="email">' + '<span><i class="fa fa-envelope"></i> </span>' + '<span class="edit">' + value.email + '</span></li>\
                             <li class="phone">' + '<span><i class="fa fa-mobile"></i> </span>' + '<span class="edit">' + value.phone + '</span></li>\
@@ -41,26 +41,19 @@ $(document).ready(function () {
                         </ul>');
                     });
 
-                    // присвоение id элементам ul
-                    var i = 0;
-                    $('#out ul').each(function () {
-                        i++;
-                        $(this).attr('id','person' + i);
-                    });
-
                     //удаляем кнопку из DOM
-                    $('#action').detach();
+                    $('#action').remove();
                 }
             });
         });
 
     } else {
         // удаляем кнопку из DOM
-        $('#action').detach();
+        $('#action').remove();
 
         // вывод данных на страницу
         $.each(localData, function (key, value) {
-            $('#out').append('<ul class="list"><button class="close_card"><i class="fas fa-times"></i></button>\
+            $('#out').append('<ul class="list"  id ='+ value.id +'><button class="close_card"><i class="fas fa-times"></i></button>\
                 <li class="name">' + '<span><i class="fas fa-user"></i> </span>' + '<span class="edit">' + value.name + '</span></li>\
                 <li class="email">' + '<span><i class="fa fa-envelope"></i> </span>' + '<span class="edit">' + value.email + '</span></li>\
                 <li class="phone">' + '<span><i class="fa fa-mobile"></i> </span>' + '<span class="edit">' + value.phone + '</span></li>\
@@ -71,13 +64,6 @@ $(document).ready(function () {
                     </ul>'+ '</li>\
                 <li class="company">' + '<span>Company: </span>' + '<span class="edit">' + value.company.name + '</span></li>\
             </ul>');
-        });
-
-        // присвоение id элементам ul
-        var i = 0;
-        $('#out ul').each(function () {
-            i++;
-            $(this).attr("id","person" +i);
         });
     }//else
 
@@ -100,18 +86,32 @@ $(document).ready(function () {
         $(this).html('<input type="text" class="editBox" value="' + text + '">\
                     <button class="save"><i class="fas fa-save"></i></button>');
     });
+        
 
     // сохранение изменений 
     $('body').on('click', '.save', function () {
         
+        var val = $('.editBox').val();
+        var parentId = $(this).parent().parent().parent().attr('id');
+        var parentClass = $(this).parent().parent().attr('class');
+        
+        
         var newText = $(this).siblings('.editBox').val();
         $(this).parent().text(newText);
 
-        $.each(localData, function(){
-            this.name = newText;
-        });
+
+        function change( name, value ) {
+            for (var i in localData) {
+              if (localData[i].id == parentId) {
+                 localData[i].name = val;
+                 break; 
+                }
+            }
+        }
+        change();
 
         console.log(localData);
+
+        // localStorage.setItem('card', JSON.stringify(localData));
     });
 });
-
