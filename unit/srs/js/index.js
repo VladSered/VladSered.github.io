@@ -28,7 +28,7 @@ $(document).ready(function () {
 
                     // вывод данных на страницу
                     $.each(data, function (key, value) {
-                        $('#out').append('<ul class="list" id ='+ value.id +'><button class="close_card"><i class="fas fa-times"></i></button>\
+                        $('#out').append('<ul class="list" id =' + value.id + '><button class="close_card"><i class="fas fa-times"></i></button>\
                             <li class="name">' + '<span><i class="fas fa-user"></i> </span>' + '<span class="edit">' + value.name + '</span></li>\
                             <li class="email">' + '<span><i class="fa fa-envelope"></i> </span>' + '<span class="edit">' + value.email + '</span></li>\
                             <li class="phone">' + '<span><i class="fa fa-mobile"></i> </span>' + '<span class="edit">' + value.phone + '</span></li>\
@@ -53,14 +53,14 @@ $(document).ready(function () {
 
         // вывод данных на страницу
         $.each(localData, function (key, value) {
-            $('#out').append('<ul class="list"  id ='+ value.id +'><button class="close_card"><i class="fas fa-times"></i></button>\
+            $('#out').append('<ul class="list"  id =' + value.id + '><button class="close_card"><i class="fas fa-times"></i></button>\
                 <li class="name">' + '<span><i class="fas fa-user"></i> </span>' + '<span class="edit">' + value.name + '</span></li>\
                 <li class="email">' + '<span><i class="fa fa-envelope"></i> </span>' + '<span class="edit">' + value.email + '</span></li>\
                 <li class="phone">' + '<span><i class="fa fa-mobile"></i> </span>' + '<span class="edit">' + value.phone + '</span></li>\
                 <li class="adress">' + '<span>Adress: </span>' + '<ul>\
-                    <li class="place">' + '<span>street: </span>' + '<span class="edit">' + value.address.street + '</span></li>\
-                    <li class="place">' + '<span>suite: </span>' + '<span class="edit">' + value.address.suite + '</span></li>\
-                    <li class="place">' + '<span>city: </span>' + '<span class="edit">' + value.address.street + '</span></li>\
+                    <li class="street">' + '<span>street: </span>' + '<span class="edit">' + value.address.street + '</span></li>\
+                    <li class="suite">' + '<span>suite: </span>' + '<span class="edit">' + value.address.suite + '</span></li>\
+                    <li class="city">' + '<span>city: </span>' + '<span class="edit">' + value.address.city + '</span></li>\
                     </ul>'+ '</li>\
                 <li class="company">' + '<span>Company: </span>' + '<span class="edit">' + value.company.name + '</span></li>\
             </ul>');
@@ -85,33 +85,46 @@ $(document).ready(function () {
         var text = $(this).text();
         $(this).html('<input type="text" class="editBox" value="' + text + '">\
                     <button class="save"><i class="fas fa-save"></i></button>');
-    });
         
+    });
+
 
     // сохранение изменений 
     $('body').on('click', '.save', function () {
-        
+
         var val = $('.editBox').val();
         var parentId = $(this).parent().parent().parent().attr('id');
         var parentClass = $(this).parent().parent().attr('class');
+
+        var parentIdAddress = $(this).parent().parent().parent().parent().parent().attr('id');
         
         
         var newText = $(this).siblings('.editBox').val();
         $(this).parent().text(newText);
 
 
-        function change( name, value ) {
+        function change(name, value) {
             for (var i in localData) {
-              if (localData[i].id == parentId) {
-                 localData[i].name = val;
-                 break; 
+                if (localData[i].id == parentId) {
+                    localData[i][name] = value;
+                    break;
                 }
             }
         }
-        change();
+        change(parentClass, val);
+
+        function changeAddress(name, value) {
+            for (var i in localData) {
+                if (localData[i].id == parentIdAddress) {
+                    localData[i].address[name] = value;
+                    break;
+                }
+            }
+        }
+        changeAddress(parentClass, val);
 
         console.log(localData);
 
-        // localStorage.setItem('card', JSON.stringify(localData));
+        localStorage.setItem('card', JSON.stringify(localData));
     });
 });
