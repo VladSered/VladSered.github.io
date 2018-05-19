@@ -79,6 +79,23 @@ $(document).ready(function () {
             }
         }
     }
+    // функции изменения персональных данных
+    function changeAddress(name, value, personId) {
+        for (var i in localData) {
+            if (localData[i].id == personId) {
+                localData[i].address[name] = value;
+                break;
+            }
+        }
+    }
+    function changeCompany(name, value, personId) {
+        for (var i in localData) {
+            if (localData[i].id == personId) {
+                localData[i].company[name] = value;
+                break;
+            }
+        }
+    }
 
     // сохранение изменений 
     $('body').on('click', '.save', function () {
@@ -88,10 +105,12 @@ $(document).ready(function () {
         var personClass = $(this).parents('li').attr('class');
 
         change(personClass, val, personId);
-
+        changeAddress(personClass, val, personId);
+        changeCompany(personClass, val, personId);
+        
         var newText = $(this).siblings('.editBox').val();
         $(this).parent().text(newText);
 
         localStorage.setItem('card', JSON.stringify(localData)); // сохраняем изменения данных в localstorage
     });
-});
+});  
