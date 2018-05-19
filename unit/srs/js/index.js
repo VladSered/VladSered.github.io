@@ -1,59 +1,12 @@
 // обработчик события загрузки страницы.
 $(document).ready(function () {
 
-    // получение данных из  localstorage
-    var localData = JSON.parse(localStorage.getItem('card'));
-
-    //  проверка данных в localstorge
-    if (localStorage.getItem('card') == null) {
-
-        // Создание объекта запроса.
-        $('#action').click(function () {
-            $.ajax({
-                type: 'GET',
-                url: 'https://jsonplaceholder.typicode.com/users',
-                dataType: 'json',
-
-                beforeSend: function () {
-                    //изменяем значение кнопки и делаем ее неактивной
-                    $('#action').val('loading...').attr('disabled', true);
-                },
-
-                // функция получает десериализованный объект
-                success: function getData(data) {
-
-                    // данные в localstorage
-                    var dataToStore = JSON.stringify(data);
-                    localStorage.setItem('card', dataToStore);
-
-                    // вывод данных на страницу
-                    $.each(data, function (key, value) {
-                        $('#out').append('<ul class="list" id =' + value.id + '><button class="close_card"><i class="fas fa-times"></i></button>\
-                            <li class="name">' + '<span><i class="fas fa-user"></i> </span>' + '<span class="edit">' + value.name + '</span></li>\
-                            <li class="email">' + '<span><i class="fa fa-envelope"></i> </span>' + '<span class="edit">' + value.email + '</span></li>\
-                            <li class="phone">' + '<span><i class="fa fa-mobile"></i> </span>' + '<span class="edit">' + value.phone + '</span></li>\
-                            <li class="adress">' + '<span>Adress: </span>' + '<ul>\
-                                <li class="place">' + '<span>street: </span>' + '<span class="edit">' + value.address.street + '</span></li>\
-                                <li class="place">' + '<span>suite: </span>' + '<span class="edit">' + value.address.suite + '</span></li>\
-                                <li class="place">' + '<span>city: </span>' + '<span class="edit">' + value.address.street + '</span></li>\
-                                </ul>'+ '</li>\
-                            <li class="company">' + '<span>Company: </span>' + '<span class="edit">' + value.company.name + '</span></li>\
-                        </ul>');
-                    });
-
-                    //удаляем кнопку из DOM
-                    $('#action').remove();
-                }
-            });
-        });
-
-    } else {
-        // удаляем кнопку из DOM
-        $('#action').remove();
-
-        // вывод данных на страницу
-        $.each(localData, function (key, value) {
-            $('#out').append('<ul class="list"  id =' + value.id + '><button class="close_card"><i class="fas fa-times"></i></button>\
+    var localData = JSON.parse(localStorage.getItem('card')); // получение данных из  localstorage
+    console.log(localData)
+    // функция для выводаданных на страницу
+    function showData(data) {
+        $.each(data, function (key, value) {
+            $('#out').append('<ul class="list" id =' + value.id + '><button class="close_card"><i class="fas fa-times"></i></button>\
                 <li class="name">' + '<span><i class="fas fa-user"></i> </span>' + '<span class="edit">' + value.name + '</span></li>\
                 <li class="email">' + '<span><i class="fa fa-envelope"></i> </span>' + '<span class="edit">' + value.email + '</span></li>\
                 <li class="phone">' + '<span><i class="fa fa-mobile"></i> </span>' + '<span class="edit">' + value.phone + '</span></li>\
@@ -65,18 +18,48 @@ $(document).ready(function () {
                 <li class="company">' + '<span>Company: </span>' + '<span class="edit">' + value.company.name + '</span></li>\
             </ul>');
         });
+    }
+
+    //  проверка данных в localstorge
+    if (null == localStorage.getItem('card')) {
+
+        // Создание объекта запроса.
+        $('#action').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: 'https://jsonplaceholder.typicode.com/users',
+                dataType: 'json',
+
+                beforeSend: function () {
+                    $('#action').val('loading...').attr('disabled', true);  //изменяем значение кнопки и делаем ее неактивной
+                },
+
+                // функция получает десериализованный объект
+                success: function getData(localData) {
+                    localStorage.setItem('card', JSON.stringify(localData)); // данные в localstorage
+                    
+                    showData(localData); // вывод данных на страницу
+
+                    $('#action').remove(); //удаляем кнопку из DOM
+                }
+            });
+        });
+    } else {
+        showData(localData); // вывод данных на страницу
+        $('#action').remove(); // удаляем кнопку из DOM
+
     }//else
 
     // удаляем карточку из DOM и из массива
     $('body').on('click', '.close_card', function () {
 
-        var data = JSON.parse(localStorage.getItem('card'));
+        var dataCard = JSON.parse(localStorage.getItem('card'));
+
         var $ul = $(this).closest('.list');
-        data.splice(this, 1);
+        dataCard.splice(this, 1);
         $ul.remove();
 
-        // сохраняем изменения данных в localstorage
-        localStorage.setItem('card', JSON.stringify(data));
+        localStorage.setItem('card', JSON.stringify(dataCard)); // сохраняем изменения данных в localstorage
     });
 
     // работа с инфой
@@ -85,46 +68,30 @@ $(document).ready(function () {
         var text = $(this).text();
         $(this).html('<input type="text" class="editBox" value="' + text + '">\
                     <button class="save"><i class="fas fa-save"></i></button>');
-        
     });
 
+    // функции изменения персональных данных
+    function change(name, value, personId) {
+        for (var i in localData) {
+            if (localData[i].id == personId) {
+                localData[i][name] = value;
+                break;
+            }
+        }
+    }
 
     // сохранение изменений 
     $('body').on('click', '.save', function () {
 
         var val = $('.editBox').val();
-        var parentId = $(this).parent().parent().parent().attr('id');
-        var parentClass = $(this).parent().parent().attr('class');
+        var personId = $(this).parents('ul.list').attr('id');
+        var personClass = $(this).parents('li').attr('class');
 
-        var parentIdAddress = $(this).parent().parent().parent().parent().parent().attr('id');
-        
-        
+        change(personClass, val, personId);
+
         var newText = $(this).siblings('.editBox').val();
         $(this).parent().text(newText);
 
-
-        function change(name, value) {
-            for (var i in localData) {
-                if (localData[i].id == parentId) {
-                    localData[i][name] = value;
-                    break;
-                }
-            }
-        }
-        change(parentClass, val);
-
-        function changeAddress(name, value) {
-            for (var i in localData) {
-                if (localData[i].id == parentIdAddress) {
-                    localData[i].address[name] = value;
-                    break;
-                }
-            }
-        }
-        changeAddress(parentClass, val);
-
-        console.log(localData);
-
-        localStorage.setItem('card', JSON.stringify(localData));
+        localStorage.setItem('card', JSON.stringify(localData)); // сохраняем изменения данных в localstorage
     });
 });
