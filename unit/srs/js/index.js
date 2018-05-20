@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
     var localData = JSON.parse(localStorage.getItem('card')); // получение данных из  localstorage
-    console.log(localData)
+
     // функция для выводаданных на страницу
     function showData(data) {
         $.each(data, function (key, value) {
@@ -35,11 +35,10 @@ $(document).ready(function () {
                 },
 
                 // функция получает десериализованный объект
-                success: function getData(localData) {
+                success: function getData(data) {
+                    localData = data;
                     localStorage.setItem('card', JSON.stringify(localData)); // данные в localstorage
-                    
-                    showData(localData); // вывод данных на страницу
-
+                    showData(data); // вывод данных на страницу
                     $('#action').remove(); //удаляем кнопку из DOM
                 }
             });
@@ -52,14 +51,10 @@ $(document).ready(function () {
 
     // удаляем карточку из DOM и из массива
     $('body').on('click', '.close_card', function () {
-
-        var dataCard = JSON.parse(localStorage.getItem('card'));
-
         var $ul = $(this).closest('.list');
-        dataCard.splice(this, 1);
+        localData.splice(this, 1);
         $ul.remove();
-
-        localStorage.setItem('card', JSON.stringify(dataCard)); // сохраняем изменения данных в localstorage
+        localStorage.setItem('card', JSON.stringify(localData)); // сохраняем изменения данных в localstorage
     });
 
     // работа с инфой
@@ -91,7 +86,7 @@ $(document).ready(function () {
     function changeCompany(name, value, personId) {
         for (var i in localData) {
             if (localData[i].id == personId) {
-                localData[i].company[name] = value;
+                localData[i][name].name = value;
                 break;
             }
         }
@@ -104,12 +99,12 @@ $(document).ready(function () {
         var personId = $(this).parents('ul.list').attr('id');
         var personClass = $(this).parents('li').attr('class');
 
+        var newText = $(this).siblings('.editBox').val();
+        $(this).parent().text(newText);
+
         change(personClass, val, personId);
         changeAddress(personClass, val, personId);
         changeCompany(personClass, val, personId);
-        
-        var newText = $(this).siblings('.editBox').val();
-        $(this).parent().text(newText);
 
         localStorage.setItem('card', JSON.stringify(localData)); // сохраняем изменения данных в localstorage
     });
