@@ -5,15 +5,16 @@ window.onload = function () {
   // создание кнопки для запроса данных
   var buttonGetData = document.createElement('button');
   buttonGetData.id = 'action';
-  
+  buttonGetData.classList = 'btn-small pulse blue'
+  buttonGetData.appendChild((document.createTextNode('Get Data')));
+
   function appendBtn() {
-    buttonGetData.appendChild((document.createTextNode('Get Data')));
-    document.querySelector('.container').appendChild(buttonGetData);
+    document.querySelector('.card-content').appendChild(buttonGetData);
     document.getElementById('action').addEventListener('click', getData);
   }
 
   //  проверка данных в localstorge
-  if (null == localStorage.getItem('card')) {
+  if (null == localStorage.getItem('card') || (myData.length == 0)) {
     appendBtn();
   } else {
     buttonGetData.remove();
@@ -30,6 +31,7 @@ window.onload = function () {
     // окончание загрузки данных
     xhr.onloadend = function () {
       buttonGetData.remove(); // удаление кнопки загрузки
+      buttonGetData.innerText = 'Get Data';
     };
     xhr.send(); // отправка запроса
     // получение данных с сервера
@@ -46,37 +48,68 @@ window.onload = function () {
     var output = '';
     // компиляция HTML
     myData.forEach(function (value) {
-      output += '<ul class="list" id =' + value.id + '><button class="close_card"><i class="fas fa-times"></i></button>\
-        <li class="name">' + '<span><i class="fas fa-user"></i> </span>' + '<span class="edit">' + value.name + '</span></li>\
-        <li class="email">' + '<span><i class="fa fa-envelope"></i> </span>' + '<span class="edit">' + value.email + '</span></li>\
-        <li class="phone">' + '<span><i class="fa fa-mobile"></i> </span>' + '<span class="edit">' + value.phone + '</span></li>\
-        <li class="adress">' + '<span>Adress: </span>' + '<ul>\
-          <li class="street">' + '<span>street: </span>' + '<span class="edit">' + value.address.street + '</span></li>\
-          <li class="suite">' + '<span>suite: </span>' + '<span class="edit">' + value.address.suite + '</span></li>\
-          <li class="city">' + '<span>city: </span>' + '<span class="edit">' + value.address.city + '</span></li>\
+      output += '<ul class="col s12 m5 card collection" id =' + value.id + '>\
+        <li class="collection-item">' + '<i class="fa fa-user"></i>' + '<input type="text" class="edit" id="name" value="' + value.name + '"></li>\
+        <li class="collection-item">' + '<i class="fa fa-envelope">' + '</i><input class="edit" type="text" id="email"  value="' + value.email + '"></li>\
+        <li class="collection-item">' + '<i class="fa fa-phone"></i>' + '<input class="edit" type="text" id="phone"  value="' + value.phone + '"></li>\
+        <li class="address collection-item">' + '<strong>Adress</strong>' + '<ul>\
+          <li class="collection-item">' + '<span>street: </span>' + '<input class="edit" type="text" id="street" value = "' + value.address.street + '"></li>\
+          <li class="collection-item">' + '<span>suite: </span>' + '<input class="edit" type="text" id="suite" value="' + value.address.suite + '"></li>\
+          <li class="collection-item">' + '<span>city: </span>' + '<input class="edit" type="text" id="city" value="' + value.address.city + '"></li>\
           </ul>'+ '</li>\
-        <li class="company">' + '<span>Company: </span>' + '<span class="edit">' + value.company.name + '</span></li>\
-      </ul>'
+        <li class="collection-item">' + '<strong>Company: </strong>' + '<input class="edit" type="text" id="company" value="' + value.company.name + '"></li>\
+        <button class="close-card waves-effect waves-light btn-small">Delete</button>\
+        <button class="update-btn waves-effect waves-darken btn-small">Update</button>\
+        </ul>'
     });
-    document.getElementById('out').innerHTML = output;
+    document.querySelector('.card-content').innerHTML = output;
   }
 
   // удаление карточки из DOM 
   document.body.addEventListener('click', removeList);
   function removeList(e) {
-    var idCard = e.target.parentElement.parentElement;
-    if (e.target.parentElement.classList.contains('close_card')) {
-      e.target.parentElement.parentElement.remove();
+    var idCard = e.target.parentElement;
+    // проверка условия по таргет
+    if (e.target.classList.contains('close-card')) {
+      e.target.parentElement.remove(); // удаление из DOM
       // удалние объекта из массива
       for (var i = 0; i <= myData.length; i++)
         if (myData[i].id == idCard.id) {
           myData.splice(i, 1);
           break;
         }
-    }
-    if (myData.length == 0) {
-      appendBtn();
+      // проверка массива
+      if (myData.length == 0) {
+        appendBtn();
+      }
     }
     localStorage.setItem('card', JSON.stringify(myData)); // данные в localstorage
   }
-};
+  // изменение информации
+  document.body.addEventListener('click', changeText);
+
+  var updateBtn = document.body.querySelector('.update-btn');
+  // updateBtn.addEventListener('click', saveChange);
+    //   updateItemStorage: function(updatedItem){
+    //   let items = JSON.parse(localStorage.getItem('items'));
+
+    //   items.forEach(function(item, index){
+    //     if(updatedItem.id === item.id){
+    //       items.splice(index, 1, updatedItem);
+    //     }
+    //   });
+    //   localStorage.setItem('items', JSON.stringify(items));
+    // },
+  function changeText(e) {
+    var elementValue = e.target.value;
+    var elementId = e.target.parentElement.parentElement.id;
+    console.log(elementId, elementValue)
+    for (var i in myData) {
+      if (myData[i].id == elementId) {
+        myData[i].name = elementValue;
+        break;
+      }
+    }
+    console.log(myData)
+  };
+}
