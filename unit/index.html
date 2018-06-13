@@ -15,57 +15,67 @@
 </head>
 
 <body>
-	<nav class="nav-wrapper green">
-		<div class="container">
-			<a href="#" class="center">Personal Card</a>
+	<nav>
+		<div class="nav-wrapper green">
+			<div class="container">
+				<a href="#" class="left">Personal Card</a>
+				<ul class="right">
+					<li class="getData"></li>
+				</ul>
+			</div>
 		</div>
 	</nav>
+
 	<br>
 	<div class="container">
 		<!-- Form Card -->
-		<div class="card">
-			<span class="card-title">Form Card</span>
-			<form>
-				<div class="card-content row">
-					<div class="input-field col s12 m7">
-						<input type="text" placeholder="" id="item-name">
-						<label for="item-name">Name</label>
+		<div class="card-content row">
+			<div class="card">
+				<form>
+					<div class="card collection col s12 m5">
+						<div class="col s12">
+							<input type="text" placeholder="Name" id="item-name">
+							<!-- <label for="item-name">Name</label> -->
+						</div>
+						<div class="col s12">
+							<input type="text" placeholder="Email" id="item-email">
+							<!-- <label for="item-email">Email</label> -->
+						</div>
+						<div class="col s12">
+							<input type="text" placeholder="Phone" id="item-phone">
+							<!-- <label for="item-phone">Phone</label> -->
+						</div>
+						<div class="col s12">
+							<input type="text" placeholder="Street" id="item-street">
+							<!-- <label for="item-street">Street</label> -->
+						</div>
+						<div class="col s12">
+							<input type="text" placeholder="Suite" id="item-suite">
+							<!-- <label for="item-suite">Suite</label> -->
+						</div>
+						<div class="col s12">
+							<input type="text" placeholder="City" id="item-city">
+							<!-- <label for="item-city">City</label> -->
+						</div>
+						<div class="col s12">
+							<input type="text" placeholder="Company" id="item-company">
+							<!-- <label for="item-company">Company</label> -->
+						</div>
+						<div class="col s12">
+							<button class="save-btn btn-small blue darken-3">Save</button>
+							<button class="cancel-btn btn-small grey" type="button">Cancel</button>
+						</div>
 					</div>
-					<div class="input-field col s12 m7">
-						<input type="text" placeholder="" id="item-email">
-						<label for="item-email">Email</label>
-					</div>
-					<div class="input-field col s12 m7">
-						<input type="text" placeholder="" id="item-phone">
-						<label for="item-phone">phone</label>
-					</div>
-					<div class="input-field col s12 m7">
-						<input type="text" placeholder="" id="item-street">
-						<label for="item-street">Street</label>
-					</div>
-					<div class="input-field col s12 m7">
-						<input type="text" placeholder="" id="item-suite">
-						<label for="item-suite">Suite</label>
-					</div>
-					<div class="input-field col s12 m7">
-						<input type="text" placeholder="" id="item-city">
-						<label for="item-city">City</label>
-					</div>
-					<div class="col s12 m7">
-						<button class="save-btn btn-small blue darken-3 ">Save</button>
-						<button class="back-btn btn-small grey pull-right">Back</button>
-					</div>
-				</div>
-			</form>
+				</form>
+			</div>
+			<!-- Staff -->
+			<div id="staff" class="row card-content"></div>
 		</div>
-		<!-- Staff -->
-		<div class="row card-content staff"></div>
-	</div>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	 crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-	<script src="srs/js/app.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		 crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+		<script src="srs/js/app.js"></script>
 </body>
 
 </html>
