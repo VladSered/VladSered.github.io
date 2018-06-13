@@ -34,7 +34,28 @@ body {
 .address {
     padding-bottom: 0px;
 }
+.action {
+   margin-left: 100px; 
+}
+.input-field{
+    height: 1.2rem;
+}
 .update-btn,
-.edit-btn {
-    margin-left: 5px;
+.delete-btn,
+.save-btn,
+.cancel-btn {
+    margin: 5px;
+}
+.card-title {
+    margin-left: 10px;
+}
+#item-name,
+#item-email,
+#item-phone,
+#item-street,
+#item-suite,
+#item-city,
+#item-company{
+    margin-bottom: 2px;
+    /* height: 2.25rem; */
 }
