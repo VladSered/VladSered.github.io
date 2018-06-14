@@ -71,74 +71,69 @@ window.onload = function () {
     // idCard в число
     var currentId = parseInt(idCard);
     // проверка условия по таргет
-    if (e.target.classList.contains('delete-btn')) {
+    if (ItemControl.checkSolveForButton(e, 'delete-btn')) {
       e.target.parentElement.remove(); // удаление из DOM
       // удалние объекта из массива
-      Storage.deleteItemFromStorage(currentId);
+      ItemControl.deleteItemFromStorage(currentId);
       // проверка массива
       if (myData.length == 0) {
-
         appendBtn();
       }
     }
   }
   // управление LocalStorage
-  var Storage = (function () {
-    return {
-      updateItemStorage: function (updatedItem) {
-        myData.forEach(function (item, index) {
-          if (updatedItem.id === item.id) {
-            myData.splice(index, 1, updatedItem);
-          }
-        });
+  var ItemControl = {
+    updateItemStorage: function (updatedItem) {
+      myData.forEach(function (item, index) {
+        if (updatedItem.id === item.id) {
+          myData.splice(index, 1, updatedItem);
+        }
         localStorage.setItem('card', JSON.stringify(myData));
-      },
-      deleteItemFromStorage: function (id) {
-        myData.forEach(function (item, index) {
-          if (id === item.id) {
-            myData.splice(index, 1);
-          }
-        });
-        localStorage.setItem('card', JSON.stringify(myData));
-      },
+      })
+    },
+    deleteItemFromStorage: function (id) {
+      myData.forEach(function (item, index) {
+        if (id === item.id) {
+          myData.splice(index, 1);
+        }
+      });
+      localStorage.setItem('card', JSON.stringify(myData));
+    },
+    getItemById: function (id) {
+      var found = null;
+      myData.forEach(function (item) {
+        if (item.id === id) {
+          found = item;
+        }
+      });
+      return found;
+    },
+    updateItem: function (name, email, phone, street, suite, city, job) {
+      var found = null;
+      myData.forEach(function (item) {
+        if (item.id === myData.currentItem.id) {
+          item.name = name;
+          item.email = email;
+          item.phone = phone;
+          item.address.street = street;
+          item.address.suite = suite;
+          item.address.city = city;
+          item.company.name = job;
+          found = item;
+        }
+      });
+      return found;
+    },
+    setCurrentItem: function (item) {
+      myData.currentItem = item;
+    },
+    getCurrentItem: function () {
+      return myData.currentItem;
+    },
+    checkSolveForButton: function (e, selector) {
+      return e.target.classList.contains(selector);
     }
-  })();
-  // Работа с данными пользователя
-  var ItemControl = (function () {
-    return {
-      getItemById: function (id) {
-        var found = null;
-        myData.forEach(function (item) {
-          if (item.id === id) {
-            found = item;
-          }
-        });
-        return found;
-      },
-      updateItem: function (name, email, phone, street, suite, city, job) {
-        var found = null;
-        myData.forEach(function (item) {
-          if (item.id === myData.currentItem.id) {
-            item.name = name;
-            item.email = email;
-            item.phone = phone;
-            item.address.street = street;
-            item.address.suite = suite;
-            item.address.city = city;
-            item.company.name = job;
-            found = item;
-          }
-        });
-        return found;
-      },
-      setCurrentItem: function (item) {
-        myData.currentItem = item;
-      },
-      getCurrentItem: function () {
-        return myData.currentItem;
-      },
-    }
-  })();
+  }
   // Работа с интерфейсом пользователя
   var UI = (function () {
     var UISelectors = {
@@ -200,17 +195,17 @@ window.onload = function () {
   // Обновление данных пользователя
   document.body.addEventListener('click', itemEditClick);
   function itemEditClick(e) {
-    if (e.target.classList.contains('update-btn')) {
-      // получение id card элемента
-      var cardId = e.target.parentElement.id;
-      // из строки в число
-      var id = parseInt(cardId);
-      // получение элемента
-      var itemToEdit = ItemControl.getItemById(id);
-      ItemControl.setCurrentItem(itemToEdit);
-      // Отправляем карточку в форму
-      UI.addItemToForm();
-      e.preventDefault();
+    if (ItemControl.checkSolveForButton(e, 'update-btn')) {
+    // получение id card элемента
+    var cardId = e.target.parentElement.id;
+    // из строки в число
+    var id = parseInt(cardId);
+    // получение элемента
+    var itemToEdit = ItemControl.getItemById(id);
+    ItemControl.setCurrentItem(itemToEdit);
+    // Отправляем карточку в форму
+    UI.addItemToForm();
+    e.preventDefault();
     }
   }
   // Отмена на изменение данных
@@ -218,7 +213,7 @@ window.onload = function () {
   // Сохранение данных
   document.body.addEventListener('click', itemUpdateSubmit);
   function itemUpdateSubmit(e) {
-    if (e.target.classList.contains('save-btn')) {
+    if (ItemControl.checkSolveForButton(e, 'save-btn')) {
       // Получение профиля из формы
       var input = UI.getItemInput();
       // Обновление профиля
@@ -226,10 +221,15 @@ window.onload = function () {
       // Обновление на странице
       UI.updateListItem(updatedItem);
       // Обновление в LocalStorage
-      Storage.updateItemStorage(updatedItem);
+      ItemControl.updateItemStorage(updatedItem);
       // Очистка формы после сохранения
       UI.clearEditState();
       e.preventDefault();
     }
   }
-}
+  var modalWindow = {
+    block: null,
+    win: null
+  }
+};
+
