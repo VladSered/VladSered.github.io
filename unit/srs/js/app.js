@@ -1,7 +1,9 @@
 window.onload = function () {
 
   var myData = JSON.parse(localStorage.getItem('card')); // получение данных из  localstorage
-
+  // Модальное окно
+  var modalOne = document.getElementById('modal-one');
+  var modalTwo = document.getElementById('modal-two');
   // создание кнопки для запроса данных
   var buttonGetData = document.createElement('button');
   buttonGetData.id = 'action';
@@ -67,18 +69,22 @@ window.onload = function () {
   // удаление карточки из DOM и LocalStorage
   document.body.addEventListener('click', removeList);
   function removeList(e) {
-    var idCard = e.target.parentElement.id;
-    // idCard в число
-    var currentId = parseInt(idCard);
-    // проверка условия по таргет
+    // проверка условия по таргет на удаление
     if (ItemControl.checkSolveForButton(e, 'delete-btn')) {
-      e.target.parentElement.remove(); // удаление из DOM
-      // удалние объекта из массива
-      ItemControl.deleteItemFromStorage(currentId);
-      // проверка массива
-      if (myData.length == 0) {
-        appendBtn();
-      }
+      modalTwo.style.display = 'block';
+      var cardFound = e.target.parentElement;
+      return card = cardFound;
+    }
+    // Подтверждение на удаление
+    if (ItemControl.checkSolveForButton(e, 'confirm-btn')) {
+          var currentId = parseInt(card.id);
+          card.remove();
+          ItemControl.deleteItemFromStorage(currentId);
+          modalTwo.style.display = 'none';
+    }
+    // проверка массива
+    if (myData.length == 0) {
+      appendBtn();
     }
   }
   // управление LocalStorage
@@ -144,7 +150,7 @@ window.onload = function () {
       itemSuiteInput: '#item-suite',
       itemCityInput: '#item-city',
       itemCompanyInput: '#item-company',
-      listItems: '#staff ul'
+      listItems: '#staff ul',
     }
     return {
       getItemInput: function () {
@@ -188,7 +194,13 @@ window.onload = function () {
         document.querySelector(UISelectors.itemSuiteInput).value = '';
         document.querySelector(UISelectors.itemCityInput).value = '';
         document.querySelector(UISelectors.itemCompanyInput).value = '';
+
+        modalOne.style.display = 'none';
+
       },
+      undoDeleteItem: function () {
+        modalTwo.style.display = 'none';
+      }
     }
   })();
 
@@ -196,20 +208,22 @@ window.onload = function () {
   document.body.addEventListener('click', itemEditClick);
   function itemEditClick(e) {
     if (ItemControl.checkSolveForButton(e, 'update-btn')) {
-    // получение id card элемента
-    var cardId = e.target.parentElement.id;
-    // из строки в число
-    var id = parseInt(cardId);
-    // получение элемента
-    var itemToEdit = ItemControl.getItemById(id);
-    ItemControl.setCurrentItem(itemToEdit);
-    // Отправляем карточку в форму
-    UI.addItemToForm();
-    e.preventDefault();
+      // получение id card элемента
+      var cardId = e.target.parentElement.id;
+      // из строки в число
+      var id = parseInt(cardId);
+      // получение элемента
+      var itemToEdit = ItemControl.getItemById(id);
+      ItemControl.setCurrentItem(itemToEdit);
+      // Отправляем карточку в форму
+      modalOne.style.display = 'block';
+      UI.addItemToForm();
+      e.preventDefault();
     }
   }
   // Отмена на изменение данных
   document.body.querySelector('.cancel-btn').addEventListener('click', UI.clearEditState);
+  document.body.querySelector('.undo-btn').addEventListener('click', UI.undoDeleteItem);
   // Сохранение данных
   document.body.addEventListener('click', itemUpdateSubmit);
   function itemUpdateSubmit(e) {
@@ -224,12 +238,9 @@ window.onload = function () {
       ItemControl.updateItemStorage(updatedItem);
       // Очистка формы после сохранения
       UI.clearEditState();
+      modalOne.style.display = 'none';
       e.preventDefault();
     }
-  }
-  var modalWindow = {
-    block: null,
-    win: null
   }
 };
 

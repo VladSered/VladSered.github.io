@@ -9,6 +9,7 @@ html {
 body {
     
 }
+
 #street,
 #city,
 #suite {
@@ -56,6 +57,49 @@ body {
 #item-suite,
 #item-city,
 #item-company{
+    padding-left: 10px;
     margin-bottom: 2px;
-    /* height: 2.25rem; */
+}
+#modal-one {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation-name: openmodal;
+    animation-duration: 1s;
+}
+#modal-two {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation-name: openmodal;
+    animation-duration: 1s;
+}
+.modal-content {
+    background-color: rgb(253, 253, 253);
+    margin: 20% auto;
+    width: 35%;
+    box-shadow: 0 5px 8px 0 rgb(0, 0, 0, 0.5);
+}
+.modal-content-two {
+    background-color: rgb(253, 253, 253);
+    margin: 20% auto;
+    padding: 10px 20px 10px 20px;
+    width: 30%;
+    box-shadow: 0 5px 8px 0 rgb(0, 0, 0, 0.5);
+}
+@keyframes openmodal {
+    from { opacity: 0;}
+    to {opacity: 1}
 }

@@ -29,10 +29,10 @@
 	<br>
 	<div class="container">
 		<!-- Form Card -->
-		<div class="card-content row">
-			<div class="card">
+		<div id="modal-one">
+			<div class="modal-content">
 				<form>
-					<div class="card collection col s12 m5">
+					<div class="collection col s12 m5">
 						<div class="col s12">
 							<input type="text" placeholder="Name" id="item-name">
 							<!-- <label for="item-name">Name</label> -->
@@ -68,14 +68,24 @@
 					</div>
 				</form>
 			</div>
-			<!-- Staff -->
-			<div id="staff" class="row card-content"></div>
 		</div>
+		<div id="modal-two">
+			<div class="modal-content-two">
+				<p class="sometext center">Are you sure?</p>
+				<div class="center">
+					<button class="confirm-btn btn-small green darken-3">Yes</button>
+					<button class="undo-btn btn-small grey" type="button">No</button>
+				</div>
+			</div>
+		</div>
+		<!-- Staff -->
+		<div id="staff" class="row card-content"></div>
+	</div>
 
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-		 crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-		<script src="srs/js/app.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+	<script src="srs/js/app.js"></script>
 </body>
 
 </html>
