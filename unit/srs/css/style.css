@@ -103,7 +103,7 @@ html {
 } */
 .modal-content {
     background-color: rgb(253, 253, 253);
-    margin: 25% auto;
+    margin: 10% auto;
     width: 35%;
     box-shadow: 0 5px 8px 0 rgb(0, 0, 0, 0.5);
 }
