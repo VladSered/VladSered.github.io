@@ -10,9 +10,7 @@ window.onload = function () {
 	// Проверка формы на заполнение
 	document.getElementById('submit').addEventListener('click', validateForm);
 	function validateForm() {
-		if (!validateName() || !validateEmail() || !validatePhone() || !validateStreet() || !validateSuite() || !validateCity() || !validateCompany()) {
-			createAlertMessage('Please fill in all fields', 'error alert-red');
-		} else {
+		if (!validateName(), !validateEmail(), !validatePhone(), !validateStreet(), !validateSuite(), !validateCity(), !validateCompany()) {
 			createAlertMessage('OK', 'success alert-green');
 			// Очистка полей
 			document.getElementById('name').value = '';
@@ -27,6 +25,8 @@ window.onload = function () {
 			for (let i = 0; i < inputs.length; i++) {
 				inputs[i].classList.remove('valid');
 			}
+		} else {
+			createAlertMessage('Please fill in all fields', 'error alert-red');
 		}
 	}
 	// Notification
@@ -50,10 +50,10 @@ window.onload = function () {
 		const re = /^[a-zA-Z ]{5,20}$/;
 		if (!re.test(name.value)) {
 			name.classList.add('invalid');
-			return false;
+			return true;
 		} else {
 			name.classList.remove('invalid');
-			return true;
+			return false;
 		}
 	}
 
@@ -62,10 +62,10 @@ window.onload = function () {
 		const re = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 		if (!re.test(email.value)) {
 			email.classList.add('invalid');
-			return false;
+			return true;
 		} else {
 			email.classList.remove('invalid');
-			return true;
+			return false;
 		}
 	}
 
@@ -74,10 +74,10 @@ window.onload = function () {
 		const re = /^\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}$/;
 		if (!re.test(phone.value)) {
 			phone.classList.add('invalid');
-			return false;
+			return true;
 		} else {
 			phone.classList.remove('invalid');
-			return true;
+			return false;
 
 		}
 	}
@@ -87,10 +87,10 @@ window.onload = function () {
 		const re = /^[a-zA-Z0-9 .-]+$/;
 		if (!re.test(street.value)) {
 			street.classList.add('invalid');
-			return false;
+			return true;
 		} else {
 			street.classList.remove('invalid');
-			return true;
+			return false;
 		}
 	}
 
@@ -99,10 +99,10 @@ window.onload = function () {
 		const re = /^[a-zA-Z0-9 .-]+$/;
 		if (!re.test(suite.value)) {
 			suite.classList.add('invalid');
-			return false;
+			return true;
 		} else {
 			suite.classList.remove('invalid');
-			return true;
+			return false;
 		}
 	}
 
@@ -111,10 +111,10 @@ window.onload = function () {
 		const re = /^[a-zA-Z0-9 .-]+$/;
 		if (!re.test(city.value)) {
 			city.classList.add('invalid');
-			return false;
+			return true;
 		} else {
 			city.classList.remove('invalid');
-			return true;
+			return false;
 		}
 	}
 
@@ -123,10 +123,10 @@ window.onload = function () {
 		const re = /^[a-zA-Z]+$/;
 		if (!re.test(company.value)) {
 			company.classList.add('invalid');
-			return false;
+			return true;
 		} else {
 			company.classList.remove('invalid');
-			return true;
+			return false;
 		}
 	}
 }
