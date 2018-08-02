@@ -1,0 +1,61 @@
+body {
+    font-size: 16px;
+}
+
+.card-panel {
+    padding: 20px;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.input-field {
+    margin: 0px;
+    /* margin-bottom: 0; */
+}
+
+.input-field .helper-text {
+    font-size: 10px;
+}
+
+#name,
+#email,
+#phone,
+#street,
+#suite,
+#city,
+#company {
+    height: 2rem;
+    margin: 0 0 5px 0;
+    font-size: 14px;
+}
+
+.btn {
+    padding: 0;
+    height: 30px;
+    line-height: 20px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #eed3d7;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 0px;
+    right: 21px;
+    float: right;
+    clear: right;
+    background-color: white;
+}
+
+.alert-green {
+    color: white;
+    background-color: #37BC9B;
+}
+
+.alert-red {
+    color: white;
+    background-color: #DA4453;
+}
