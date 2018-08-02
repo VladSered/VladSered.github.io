@@ -10,7 +10,7 @@ window.onload = function () {
 	// Проверка формы на заполнение
 	document.getElementById('submit').addEventListener('click', validateForm);
 	function validateForm() {
-		if (!validateName() && !validateEmail() && !validatePhone() && !validateStreet() && !validateSuite() && !validateCity() && !validateCompany()) {
+		if (!validateName() || !validateEmail() || !validatePhone() || !validateStreet() || !validateSuite() || !validateCity() || !validateCompany()) {
 			createAlertMessage('Please fill in all fields', 'error alert-red');
 		} else {
 			createAlertMessage('OK', 'success alert-green');
@@ -75,7 +75,6 @@ window.onload = function () {
 		if (!re.test(phone.value)) {
 			phone.classList.add('invalid');
 			return false;
-
 		} else {
 			phone.classList.remove('invalid');
 			return true;
@@ -89,11 +88,9 @@ window.onload = function () {
 		if (!re.test(street.value)) {
 			street.classList.add('invalid');
 			return false;
-
 		} else {
 			street.classList.remove('invalid');
 			return true;
-
 		}
 	}
 
