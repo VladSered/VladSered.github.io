@@ -84,7 +84,7 @@ window.onload = function () {
 
 	function validateStreet() {
 		const street = document.getElementById('street');
-		const re = /^[a-zA-Z0-9 .-]/;
+		const re = /^[a-zA-Z0-9 .-]+$/;
 		if (!re.test(street.value)) {
 			street.classList.add('invalid');
 			return false;
@@ -96,7 +96,7 @@ window.onload = function () {
 
 	function validateSuite() {
 		const suite = document.getElementById('suite');
-		const re = /^[a-zA-Z0-9 .-]/;
+		const re = /^[a-zA-Z0-9 .-]+$/;
 		if (!re.test(suite.value)) {
 			suite.classList.add('invalid');
 			return false;
@@ -108,7 +108,7 @@ window.onload = function () {
 
 	function validateCity() {
 		const city = document.getElementById('city');
-		const re = /^[a-zA-Z0-9 .-]/;
+		const re = /^[a-zA-Z0-9 .-]+$/;
 		if (!re.test(city.value)) {
 			city.classList.add('invalid');
 			return false;
@@ -120,7 +120,7 @@ window.onload = function () {
 
 	function validateCompany() {
 		const company = document.getElementById('company');
-		const re = /^[a-z ]/i;
+		const re = /^[a-zA-Z]+$/;
 		if (!re.test(company.value)) {
 			company.classList.add('invalid');
 			return false;
